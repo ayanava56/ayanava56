@@ -1,0 +1,96 @@
+import random
+import time 
+
+game_class = ['R', 'P', 'S']  # list made specifying the game contents
+play_count = 10
+no_of_play_count = 0
+player_count = 0
+AI_count = 0
+print(" \t \t \t \t Rock, Paper, Scissors game\n")
+print("Number of plays is limited to 10")  # No of plays limtd.
+
+
+print("Enter R or W or S from keyboard\n'R' for ROCK\n'P' for PAPER\n'S' fo SCISSORS\n")
+
+# coditions of game starting from here >>> line 19 to line 96
+
+
+# The main code
+while no_of_play_count < play_count:
+    choice = random.choice(game_class)
+    input_user = input("Enter R or P or S from keyboard:")  # input from player
+    if input_user == "R":  # player choice is rock
+        if choice == "R":
+            print("........\n")
+            time.sleep(2)
+            print("Play tied!!!!\n", "No point")
+            
+        elif choice == "P":
+            AI_count = AI_count + 1
+            print(".........\n")
+            time.sleep(2)
+            print("Paper folds Rock I wins !!!!\n")
+            print(f"The points are Yours {player_count} and mine {AI_count}")
+
+        elif choice == "S":
+            player_count = player_count+1
+            print(".........\n")
+            time.sleep(2)
+            print("Rock breaks Scissor You win !!!!\n")
+            print(f"The points are Yours {player_count} and mine {AI_count}")
+
+    elif input_user == "P":  # player choice is paper
+        if choice == "P":
+            print(".........")
+            time.sleep(2)
+            print("Play tied!!!!", "No points")
+        elif choice == "R":
+            player_count = player_count + 1
+            print(".........\n")
+            time.sleep(2)
+            print("Paper wraps Rock You win!!!!\n")
+            print(f"The points are Yours {player_count} and mine {AI_count}")
+        elif choice == "S":
+            AI_count = AI_count+1
+            print(".........\n")
+            time.sleep(2)
+            print("Scissor cuts Paper I win!!!!\n")
+            print(f"The points are Yours {player_count} and mine {AI_count}")
+
+    elif input_user == "S":  # player choice is scissors
+        if choice == "S":
+            print(".........\n")
+            time.sleep(2)
+            print("Play tied!!!!", "No points\n")
+        elif choice == "R":
+            AI_count = AI_count+1
+            print(".........\n")
+            time.sleep(2)
+            print("Rock breaks Scissor I win!!!!\n")
+            print(f"The points are Yours {player_count} and mine {AI_count}")
+        elif choice == "W":
+            player_count = player_count+1
+            print(".........")
+            time.sleep(2)
+            print("Scissor cuts Paper You win!!!!\n")
+            print(f"The points are Yours {player_count} and mine {AI_count}")
+
+    else:
+        print("Wrong  Input")
+    no_of_play_count = no_of_play_count+1
+    print(f"Number of plays left {play_count-no_of_play_count} out of {play_count}")
+
+if player_count == AI_count:
+    print("..........")
+    time.sleep(2)
+    print("Play Tied")
+elif player_count > AI_count:
+    print("..........")
+    time.sleep(2)
+    print("Congrats!!!! You Win The Game")
+    print(f"The points are Yours {player_count} and Mine {AI_count}")
+elif player_count < AI_count:
+    print("..........")
+    time.sleep(2)
+    print("Boohoooo!!!! I Win, You Lose")
+    print(f"The points are Yours {player_count} and Mine {AI_count}")
