@@ -1,0 +1,57 @@
+from datetime import datetime
+from time import time
+from pygame import mixer
+
+def music_on_loop(file, stopper):
+    mixer.init()
+    mixer.music.load(file)
+    mixer.music.play()
+
+    while 1:
+        a = input()
+        if a == stopper:
+            mixer.music.stop()
+            break
+
+
+def log_now(msg):
+    f = open("MY_LOGS.txt", "a")
+    f.write(f"{msg} {datetime.now()}\n")
+
+if __name__ == '__main__':
+    init_water = time()
+    init_eyes_exercise = time()
+    init_physical_exercise = time()
+    water_time = 30*60
+    eyes_exercise_time = 40*60
+    physical_exercise_time = 45*60
+
+
+
+    while 1:
+        if time() - init_water > water_time:
+            print("Its your water drinking time. Enter 'done' to stop the alarm.")
+            music_on_loop('water.mp3', 'done')
+            init_water = time()
+            log_now("Drank water at - ")
+
+        elif time() - init_eyes_exercise > eyes_exercise_time:
+            print("Its your eyes exercise time. Enter 'done' to stop the alarm.")
+            music_on_loop('eyes.mp3', 'done')
+            init_eyes_exercise = time()
+            log_now("Eyes exercise done at - ")
+
+        elif time() - init_physical_exercise > physical_exercise_time:
+            print("Its your physical exercise time. Enter 'done' to stop the alarm.")
+            music_on_loop('physique.mp3', 'done')
+            init_physical_exercise = time()
+            log_now("Physical exercise done at - ")
+
+
+
+
+
+
+
+
+        
