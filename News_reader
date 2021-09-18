@@ -1,0 +1,123 @@
+import requests
+import json
+import time
+
+
+def speak(str):
+    from win32com.client import Dispatch
+    speak = Dispatch("SAPI.SpVoice")
+    speak.Speak(str)
+
+
+if __name__ == '__main__':
+    print("Hello sir, how are you today?")
+    speak("Hello sir, how are you today")
+    
+    ans = input()
+    time.sleep(2)
+    while(1):
+        if ans == "good":
+            print(f"{ans}, then lets start our news reading session for the day.")
+            speak(f"{ans}, then lets start our news reading session for the day.")
+        else:    
+            print("Sir, you should rest for the day!")
+            speak("Sir, you should rest for the day!")
+            break
+
+        print("1.Business\n2.Entertainment\n3.Health\n4.Science\n5.Sports\n6.Technology\n")
+        choice = int(input("whats your choice of news, sir!\n"))
+        speak("whats your choice of news, sir!")
+        url_business = "https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=Your api key here"
+        url_entertainment = "https://newsapi.org/v2/top-headlines?country=in&category=entertainment&apiKey=Your api key here"
+        url_health = "https://newsapi.org/v2/top-headlines?country=in&category=entertainment&apiKey=Your api key here"
+        url_science = "https://newsapi.org/v2/top-headlines?country=in&category=science&apiKey=Your api key here"
+        url_sports = "https://newsapi.org/v2/top-headlines?country=in&category=sports&apiKey=Your api key here"
+        url_tech = "https://newsapi.org/v2/top-headlines?country=in&category=technology&apiKey=Your api key here"
+
+        if choice == 1:
+            news = requests.get(url_business).text
+            news_dict = json.loads(news)
+            articles = news_dict['articles']
+            for article in articles:
+                speak(article['title'])
+                print(f"TITLE: {article['title']}\n")
+                speak("time for a little briefing on the matter")
+                #print("Time for a little briefing on the matter")
+                time.sleep(3)
+                speak(article['description'])
+                print(f"BRIEFING: {article['description']}\n")
+                print(article['url'])
+                time.sleep(2)
+        elif choice == 2:
+            news = requests.get(url_entertainment).text
+            news_dict = json.loads(news)
+            articles = news_dict['articles']
+            for article in articles:
+                speak(article['title'])
+                print(f"TITLE: {article['title']}\n")
+                speak("time for a little briefing on the matter")
+                #print("Time for a little briefing on the matter")
+                time.sleep(3)
+                speak(article['description'])
+                print(f"BRIEFING: {article['description']}\n")
+                print(article['url'])
+                time.sleep(2)
+        elif choice == 3:
+            news = requests.get(url_health).text
+            news_dict = json.loads(news)
+            articles = news_dict['articles']
+            for article in articles:
+                speak(article['title'])
+                print(f"TITLE: {article['title']}\n")
+                speak("time for a little briefing on the matter")
+                #print("Time for a little briefing on the matter")
+                time.sleep(3)
+                speak(article['description'])
+                print(f"BRIEFING: {article['description']}\n")
+                print(article['url'])
+                time.sleep(2)
+        elif choice == 4:
+            news = requests.get(url_science).text
+            news_dict = json.loads(news)
+            articles = news_dict['articles']
+            for article in articles:
+                speak(article['title'])
+                print(f"TITLE: {article['title']}\n")
+                speak("time for a little briefing on the matter")
+                #print("Time for a little briefing on the matter")
+                time.sleep(3)
+                speak(article['description'])
+                print(f"BRIEFING: {article['description']}\n")
+                print(article['url'])
+                time.sleep(2)
+        elif choice == 5:
+            news = requests.get(url_sports).text
+            news_dict = json.loads(news)
+            articles = news_dict['articles']
+            for article in articles:
+                speak(article['title'])
+                print(f"TITLE: {article['title']}\n")
+                speak("time for a little briefing on the matter")
+                #print("Time for a little briefing on the matter")
+                time.sleep(3)
+                speak(article['description'])
+                print(f"BRIEFING: {article['description']}\n")
+                print(article['url'])
+                time.sleep(2)
+        elif choice == 6:
+            news = requests.get(url_tech).text
+            news_dict = json.loads(news)
+            articles = news_dict['articles']
+            for article in articles:
+                speak(article['title'])
+                print(f"TITLE: {article['title']}\n")
+                speak("time for a little briefing on the matter")
+                #print("Time for a little briefing on the matter")
+                time.sleep(3)
+                speak(article['description'])
+                print(f"BRIEFING: {article['description']}\n")
+                print(article['url'])
+                time.sleep(2)
+        else:
+            speak("No such choice sir!")
+            print("No such choice sir!")
