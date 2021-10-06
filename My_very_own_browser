@@ -1,0 +1,77 @@
+'''
+Author: Ayanava Banerjee
+Date: 6 October 2021
+Purpose: I was very angry and bored because my chrome was lagging and taking to mauch time to compelte the three-way-handshake and it was literally more than 5 miliseconds
+'''
+# importing the necessary modules
+import sys
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
+from PyQt5.QtWebEngineWidgets import *
+
+# Creating Class
+# creating constuctor
+
+
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super(MainWindow, self).__init__()
+        self.browser = QWebEngineView()
+        # Setting up the search engine for my browser
+        self.browser.setUrl(QUrl('http://google.com'))
+        self.setCentralWidget(self.browser)
+        self.showMaximized()
+
+# Adding Navigation Bar
+        navbar = QToolBar()
+        self.addToolBar(navbar)
+
+# Adding Back button
+        back_btn = QAction('BACK', self)
+        back_btn.triggered.connect(self.browser.back)
+        navbar.addAction(back_btn)
+
+# Adding forward button
+        forward_btn = QAction('FORWARD', self)
+        forward_btn.triggered.connect(self.browser.forward)
+        navbar.addAction(forward_btn)
+
+# Adding refresh button
+        reload_btn = QAction('REFRESH', self)
+        reload_btn.triggered.connect(self.browser.reload)
+        navbar.addAction(reload_btn)
+
+# Adding home button
+        home_btn = QAction('HOME', self)
+        home_btn.triggered.connect(self.navigate_home)
+        navbar.addAction(home_btn)
+
+# Adding url attribute to my navbar
+        self.url_bar = QLineEdit()
+        self.url_bar.returnPressed.connect(self.navigate_url)
+        navbar.addWidget(self.url_bar)
+        
+# Need to update the passing url
+        self.browser.urlChanged.connect(self.url_update)
+
+
+# creating the functing and giving call above
+
+    def navigate_home(self):
+        self.browser.setUrl(QUrl('http://google.com'))
+
+    def navigate_url(self):
+        url = self.url_bar.text()
+        self.browser.setUrl(QUrl(url))
+
+    def url_update(self, q):
+        self.url_bar.setText(q.toString())
+
+
+app = QApplication(sys.argv)
+
+inp= input("Enter the name you want to give: ")
+QApplication.setApplicationName(inp)
+window = MainWindow()
+app.exec_()
+# calling class and executing the program
